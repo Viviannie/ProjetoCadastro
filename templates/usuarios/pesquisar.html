@@ -1,0 +1,29 @@
+<h1>Busca de Usuários</h1>
+
+<html>
+<body>
+        <form role = "form" class = "form" method = "GET" action = "{{ request.path }}{% if next %}?next={{ next }}{% endif %}">
+                {% csrf_token %}
+                <h5></h5>       
+                <label for="email">E-mail <input type="text" name="email"></label>
+                <input type = "submit" value='Pesquisar' />
+                <h5></h5>
+        </form>
+        <table border="1">                
+                <thead>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                </thead>                
+                <tbody>
+                        {% if usuarios_por_email %}
+                                <ul>
+                                {% for myuser in usuarios_por_email %}     
+                                                <td> {{ myuser.nome }} </td>
+                                                <td> {{ myuser.email }} </td>
+                                {% endfor %}
+                                </ul>
+                        {% endif %}
+                </tbody>       
+        </table>
+</body>
+</html>
